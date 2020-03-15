@@ -50,35 +50,25 @@ def formatName(name):
     #extract tags from the name not related to the name
     name.replace(" ", "")
     names = []
+    name = re.sub('\[.*?\]', '', name) #delete [CLANTAG]
     names.append(name)
-
-    re.sub('\[.*?\]', '', name) #delete [CLANTAG]
-
-    resName = name
+    secondName = name
     
     #search possible twitch indicators and remove them
     if "ttv" == name[:3] or "ttv" == name[:-3]:
         n = name
-        n = n.replace("ttv", "") #someonettv or ttvsomeone
+        n = n.replace("ttv", "") #Streamer1ttv or ttvStreamer1
         names.append(n)
         print(n)
     if "twitch.tv" in name:
-        resName = n.replace("twitch.tv", "")
-    #search possible clan tag
-    if "<" in name and ">" in name:
-        re.sub(r'<.+?>', '', resName)
+        secondName = secondName.replace("twitch.tv", "")
+    elif "twitch" in name:
+        secondName = secondName.replace("twitch", "")
     
     print(name)
-    print(resName)
+    print(secondName)
     
-
-respos = FetchFromTwitch.get_response(FetchFromTwitch.get_user("summit1g"))
-FetchFromTwitch.print_response(respos)
-
 #formatName("[CASH]summit1g")
-while (True):
-    feed = pullKillFeed()
-    names = extractNames(feed)
-    time.sleep(0.25)
+
     
     
