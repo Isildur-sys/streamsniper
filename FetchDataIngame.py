@@ -98,7 +98,6 @@ def format_Name(name):
         if res != "":
             res += "&"
         res += format_user(nam)
-    print(res)
     return names
 
 def format_user(name):
