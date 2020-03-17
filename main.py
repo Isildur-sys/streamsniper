@@ -3,9 +3,16 @@ import FetchDataIngame
 import FetchFromTwitch
 
 while (True):
-    #feed = pullKillFeed()
-    #names = extractNames(feed)
-    usr = FetchFromTwitch.get_user("summit1g")
-    res = FetchFromTwitch.get_response(usr)
-    FetchFromTwitch.response_live(res)
+    #get the the killfeed
+    feed = FetchDataIngame.pullKillFeed()
+    #extract player names from the feed
+    names = FetchDataIngame.extractNames(feed)
+    if names != None:
+        #if the killfeed had names in it 
+        for name in names:
+            #search the names from twitch
+            formattedNames = FetchDataIngame.format_Name(name)
+            res = FetchFromTwitch.get_response(formattedNames)
+            FetchFromTwitch.response_live(res)
+    
     time.sleep(0.25)

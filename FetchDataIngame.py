@@ -28,7 +28,7 @@ def extractNames(names):
         print(killer)
         print(killed)
         return res
-
+    return None
 def pullKillFeed():
     #take screenshot of the killfeed and run tesseract to extract text out of the image
     #returns feed as a string
@@ -46,29 +46,65 @@ def pullKillFeed():
     #print(feedTxt)
     return feedTxt
 
-def formatName(name):
-    #extract tags from the name not related to the name
-    name.replace(" ", "")
-    names = []
+def format_Name(name):
+    #extract tags from the name not related to the name, by creating different
+    #"strains" that are different mutations of the original screen name
+    names = set([])
+    #all strains will inherit these changes
     name = re.sub('\[.*?\]', '', name) #delete [CLANTAG]
-    names.append(name)
-    secondName = name
+    name = name.lower() #make name lowercase
     
+    #create new strain from name with no underscores and spaces removed
+    noUnderScore = name.replace(" ", "")
+    noUnderScore = noUnderScore.replace("_", "")
+    #replace all spaces with underscore for original strain
+    name = name.replace(" ", "_")
+
+    #make strings alphanumeric
+    name = re.sub('[\W]+', '', name)
+    noUnderScore = re.sub('[\W]+', '', noUnderScore)
+
+    names.add(name) #add original strain to result
+    name2 = name #new strain from original
+    noUnderScore2 = noUnderScore #new strain from noUnderScores
     #search possible twitch indicators and remove them
-    if "ttv" == name[:3] or "ttv" == name[:-3]:
+    if name.endswith("ttv") or name.startswith("ttv"):
         n = name
-        n = n.replace("ttv", "") #Streamer1ttv or ttvStreamer1
-        names.append(n)
-        print(n)
+        na = noUnderScore
+        n = n.replace("ttv", "") #Streamer_1ttv or ttvStreamer_1
+        na = na.replace("ttv", "") #Streamer1ttv or ttvStreamer1
+        names.add(n)
+        names.add(na)
+    else:
+        #if no ttv tag, add tv tag to the end and try it
+        nameTV = "{}tv".format(name)
+        noUnderScoreTV = "{}tv".format(noUnderScore)
+        names.add(nameTV)
+        names.add(noUnderScoreTV)
     if "twitch.tv" in name:
-        secondName = secondName.replace("twitch.tv", "")
+        noUnderScore2 = noUnderScore2.replace("twitch.tv", "")
+        name2 = name2.replace("twitch.tv", "")
     elif "twitch" in name:
-        secondName = secondName.replace("twitch", "")
+        noUnderScore2 = noUnderScore2.replace("twitch", "")
+        name2 = name2.replace("twitch", "")
     
-    print(name)
-    print(secondName)
-    
-#formatName("[CASH]summit1g")
+    names.add(noUnderScore)
+    names.add(noUnderScore2)
+    names.add(name)
+    names.add(name2)
+
+    res = ""
+    for nam in names:
+        if res != "":
+            res += "&"
+        res += format_user(nam)
+    print(res)
+    return names
+
+def format_user(name):
+    return "user_login={0}".format(name)
+
+ns = format_Name("[CASH]summit1g")
 
     
     
