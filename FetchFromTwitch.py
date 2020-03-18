@@ -1,4 +1,5 @@
 import requests, json
+import time
 
 URL_BASE = "https://api.twitch.tv/helix/streams?"
 CLIENT_ID = "76pwnuosjagrnba3do7gjnik3uxe53"
@@ -31,7 +32,7 @@ def response_live(response):
         raise KeyError("Too many requests to Twitch API")
 
 #usr = get_user("Lonnieyo&user_login=SchrodyCat")
-#res = get_response("user_login=SchrodyCat&user_login=officialandypyro")
+#res = get_response("user_login=spider&user_login=nolla")
 #response_live(res)
 
    

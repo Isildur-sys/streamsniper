@@ -23,10 +23,8 @@ def extractNames(names):
         killer = killer.strip()
         killed = killed.strip()
 
-        res[0] = killer
-        res[1] = killed
-        print(killer)
-        print(killed)
+        res.append(killer)
+        res.append(killed)
         return res
     return None
 def pullKillFeed():
@@ -102,15 +100,18 @@ def format_Name(name):
 
     res = ""
     for nam in names:
+        print(nam)
+        nam = nam.strip("_")
         if res != "":
             res += "&"
         res += format_user(nam)
+    print(res)
     return res
 
 def format_user(name):
     return "user_login={0}".format(name)
 
-#ns = format_Name("flystirfrytv")
+#ns = format_Name("summit1g")
 
 
 
