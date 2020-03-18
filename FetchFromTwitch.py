@@ -22,15 +22,17 @@ def response_live(response):
     try:
         for i in range(0, len(response_json["data"])):
             response_live = response_json["data"][i]["type"]
-            print(response_live)
+            if response_live == "live":
+                return response_live
+        return ""
     except IndexError:
-        raise IndexError("Player not found or not online")
+        raise IndexError("Something terrbily wrong!")
     except KeyError:
         raise KeyError("Too many requests to Twitch API")
 
 #usr = get_user("Lonnieyo&user_login=SchrodyCat")
-res = get_response("user_login=SchrodyCat&user_login=officialandypyro")
-response_live(res)
+#res = get_response("user_login=SchrodyCat&user_login=officialandypyro")
+#response_live(res)
 
    
     
