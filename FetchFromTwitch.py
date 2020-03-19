@@ -20,6 +20,7 @@ def print_response(response):
 def response_live(response):
     #get response from twitch API
     response_json = response.json()
+    print(response_json)
     try:
         for i in range(0, len(response_json["data"])):
             response_live = response_json["data"][i]["type"]
@@ -29,7 +30,9 @@ def response_live(response):
     except IndexError:
         raise IndexError("Something terrbily wrong!")
     except KeyError:
-        raise KeyError("Too many requests to Twitch API")
+        #send error code upwards
+        err = response_json["status"]
+        raise KeyError(err)
 
 #usr = get_user("Lonnieyo&user_login=SchrodyCat")
 #res = get_response("user_login=spider&user_login=nolla")

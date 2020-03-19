@@ -49,6 +49,7 @@ def format_Name(name):
     #"strains" that are different mutations of the original screen name
     names = set([])
     #all strains will inherit these changes
+    name = name.strip("_")
     name = re.sub('\[.*?\]', '', name) #delete [CLANTAG]
     name = name.lower() #make name lowercase
     
@@ -100,12 +101,10 @@ def format_Name(name):
 
     res = ""
     for nam in names:
-        print(nam)
         nam = nam.strip("_")
         if res != "":
             res += "&"
         res += format_user(nam)
-    print(res)
     return res
 
 def format_user(name):
