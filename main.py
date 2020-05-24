@@ -3,15 +3,16 @@ import FetchDataIngame
 import FetchFromTwitch
 import queue
 last_request = 0
-request_interval = 0.3
+request_interval = 3
 nameQue = [] #holds the names that haven't been checked yet (due too many api calls)
 nameStorage = []#holds all the names that have been checked
+streamerStorage = [] #all streamers in the match
 
 while (True):
     #get the the killfeed
     feed = FetchDataIngame.pullKillFeed()
     #extract player names from the feed
-    names =  ["user_login=mrdogeétv&user_login=mrdogeé"]#FetchDataIngame.extractNames(feed)
+    names =  FetchDataIngame.extractNames(feed)
     if names != None:
         #if the killfeed had names in it 
         for name in names:
@@ -27,12 +28,16 @@ while (True):
         formattedNames = FetchDataIngame.format_Name(nextName)
         res = FetchFromTwitch.get_response(formattedNames)
         try:
+            print("Inspecting...")
             last_request = time.time()
+            print(res)
             streamerStatus = FetchFromTwitch.response_live(res)
             nameQue.pop(0)
             print(len(nameQue))
             if streamerStatus == "live":
-                print("----------Live Streamer In My Game!----------")
+                streamerStorage.append(nextName)
+                print("----------Live Streamer In My Game!----------Called {}".format(nextName))
+                
         except KeyError as e:
             err = "{}".format(e)
             if err == "400":

@@ -33,7 +33,6 @@ def pullKillFeed():
     root = tkinter.Tk()
     winWidth = root.winfo_screenwidth()
     winHeight = root.winfo_screenheight()
-
     feed = ImageGrab.grab(bbox=(winWidth/1.5, winHeight/1.25, winWidth-100, winHeight-150))
     #feed.save("pic{}.png".format(param))
     grayed = cv2.cvtColor(np.array(feed), cv2.COLOR_BGR2GRAY)
