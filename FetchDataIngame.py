@@ -47,10 +47,6 @@ def format_Name(name):
     #extract tags from the name not related to the name, by creating different
     #"strains" that are different mutations of the original screen name
     names = set([])
-    #all strains will inherit these changes
-    name = name.strip("_")
-    name = re.sub('\[.*?\]', '', name) #delete [CLANTAG]
-    name = name.lower() #make name lowercase
     
     #create new strain from name with no underscores and spaces removed
     noUnderScore = name.replace(" ", "")
@@ -110,8 +106,6 @@ def format_user(name):
     return "user_login={0}".format(name)
 
 #ns = format_Name("summit1g")
-
-
 
     
     

@@ -1,9 +1,10 @@
 import time
+import re
 import FetchDataIngame
 import FetchFromTwitch
 import queue
 last_request = 0
-request_interval = 3
+request_interval = 1
 nameQue = [] #holds the names that haven't been checked yet (due too many api calls)
 nameStorage = []#holds all the names that have been checked
 streamerStorage = [] #all streamers in the match
@@ -16,6 +17,10 @@ while (True):
     if names != None:
         #if the killfeed had names in it 
         for name in names:
+            name = re.sub('\[.*?\]', '', name) #delete [CLANTAG]
+            name = re.sub(r'[^A-Za-z0-9_ ]+', '', name) #delete non alphanumeric, keep spaces and underscores
+            name = name.strip("_") #strip trailing or preceding underscores
+            name = name.lower() #make name lowercase
             #add name to storage and queue
             if name not in nameStorage and name != "":
                 print("New player found! {}".format(name))
@@ -30,7 +35,6 @@ while (True):
         try:
             print("Inspecting...")
             last_request = time.time()
-            print(res)
             streamerStatus = FetchFromTwitch.response_live(res)
             nameQue.pop(0)
             print(len(nameQue))
