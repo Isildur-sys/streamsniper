@@ -1,0 +1,68 @@
+/*Main containers*/
+body {
+    color:firebrick}
+#grid-container {
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+#grid-container > div{
+    background:#eee;
+    padding:1em;
+}
+#grid-container > div:nth-child(odd){
+    background:#ddd;
+    
+}
+
+#stream-container{
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr;
+    
+}
+
+
+#settings-panel {
+    display: grid;
+    justify-content: center;
+  
+}
+
+/*Settings panel buttons*/
+
+#start {
+    display: flex;
+    margin: 16px;
+}
+
+#startbtn {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    min-width: 200px;
+    align-self: center;
+  }
+
+  #startbtn:hover {
+      background-color: #32df37;
+  }
+
+  /*Settings panel dropdown*/
+  select {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
+    font-size: 1.5rem;
+    padding: 1em 1.5em;
+    background: #4d5061;
+    color: white;
+    border: 0;
+  }
+
+

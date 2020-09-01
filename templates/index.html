@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Streamsniper</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+    </head>
+    <body>
+        <div id="grid-container">
+            <div id="stream-container">
+                
+            </div>
+            <div id="settings-panel">
+                <div>
+                    <form method="GET">
+                        <select onchange="getGame(this)" name="game" id="selected-game"> 
+                            <option value="PUBG">PUBG</option>
+                            <option value="Realm_Royale">Realm Royale</option>
+                        </select>
+                    </form>
+
+                </div>
+                
+                <div id="start">
+                    <button onclick="askStreams()"type="button" id="startbtn">Start</button>
+                    <button type="button" id="stopbtn">Stop</button>
+                </div>
+            </div>
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='script.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='test.js')}}"></script>
+    </body>
+</html>
