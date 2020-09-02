@@ -11,6 +11,12 @@ from PIL import ImageGrab, Image
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Users\maba9\AppData\Local\Tesseract-OCR\tesseract.exe'
 
+ROOT = tkinter.Tk()
+WIN_WIDTH = ROOT.winfo_screenwidth()
+WIN_HEIGHT = ROOT.winfo_screenheight()
+REALM_ROYALE_FRAME = (WIN_WIDTH/1.5, WIN_HEIGHT/1.25, WIN_WIDTH-100, WIN_HEIGHT-150)
+PUBG_FRAME = (WIN_WIDTH/1.4, WIN_HEIGHT/16.9, WIN_WIDTH-10, WIN_HEIGHT-950)
+
 def extractNames(names):
     #extract player names from the text passed from killfeed
     #return killer (= 0) and killed (= 1) as an array
@@ -30,10 +36,7 @@ def extractNames(names):
 def pullKillFeed():
     #take screenshot of the killfeed and run tesseract to extract text out of the image
     #returns feed as a string
-    root = tkinter.Tk()
-    winWidth = root.winfo_screenwidth()
-    winHeight = root.winfo_screenheight()
-    feed = ImageGrab.grab(bbox=(winWidth/1.5, winHeight/1.25, winWidth-100, winHeight-150))
+    feed = ImageGrab.grab(bbox=PUBG_FRAME)
     
     #feed.save("pic{}.png".format(1))
    
@@ -109,5 +112,10 @@ def format_user(name):
 
 #ns = format_Name("summit1g")
 
-    
+#count = 1
+#while(count < 7): 
+#    feed = ImageGrab.grab(bbox=(WIN_WIDTH/1.4, WIN_HEIGHT/16.9, WIN_WIDTH-10, WIN_HEIGHT-950))
+#    feed.save("pic{}.png".format(count))
+#    count = count + 1 
+#    time.sleep(2)
     
