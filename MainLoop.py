@@ -2,9 +2,11 @@ import time
 import re
 import FetchDataIngame
 import FetchFromTwitch
-import queue, app
+import app
 
 flag = True
+streamerQue = [] #holds live streamers in your match, until app.new_stream method 
+                 #fetches them to spawn a new embedded Twitch Stream frame
 
 def runMain():
     print("running main")
@@ -43,10 +45,12 @@ def runMain():
                 last_request = time.time()
                 streamerStatus = FetchFromTwitch.response_live(res)
                 nameQue.pop(0)
-                print(len(nameQue))
+                #print(len(nameQue))
                 if streamerStatus == "live":
                     streamerStorage.append(nextName)
-                    print("----------Live Streamer In My Game!----------Called {}".format(nextName))
+                    streamerQue.append(nextName)
+                    print("----------Live Streamer In My Game!----------")
+                    print("-----------{}-----------".format(nextName))
                     
             except KeyError as e:
                 err = "{}".format(e)

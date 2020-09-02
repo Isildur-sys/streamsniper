@@ -34,7 +34,9 @@ def pullKillFeed():
     winWidth = root.winfo_screenwidth()
     winHeight = root.winfo_screenheight()
     feed = ImageGrab.grab(bbox=(winWidth/1.5, winHeight/1.25, winWidth-100, winHeight-150))
-    #feed.save("pic{}.png".format(param))
+    
+    #feed.save("pic{}.png".format(1))
+   
     grayed = cv2.cvtColor(np.array(feed), cv2.COLOR_BGR2GRAY)
     feedTxt = pytesseract.image_to_string(grayed, lang='eng')
     feedTxt = feedTxt.replace('\n', '')

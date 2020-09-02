@@ -3,7 +3,6 @@ import requests, json, time
 import MainLoop, FetchFromTwitch, json
 
 app = Flask(__name__)
-streamers = ["esl_csgo", "stewie2K"]
 
 @app.route('/')
 def index():
@@ -29,12 +28,9 @@ def get_game(name):
 
 @app.route("/new_stream", methods=["GET"])
 def new_stream():
-    if len(streamers) != 0:
-        return streamers.pop()
+    if len(MainLoop.streamerQue) != 0:
+        return MainLoop.streamerQue.pop()
     return ""
-
-def addToStreamers(name):
-    streamers.append(name)
 
 
 if __name__ == "__main__":
