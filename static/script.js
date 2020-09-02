@@ -1,4 +1,5 @@
 let flag = true;
+let counter = 1;
 
 /*Create new window for streamer given as param*/
 function createTwitchFrame(name) {
@@ -40,23 +41,32 @@ function askStreams() {
 }
 
 
-/*Additional start button actionlistener for MainLoop + stop button*/
+/*Start button actionlisteners*/
 $(function() {
-    $('#stopbtn').bind('click', function() {
-        $.get("/stop");
+    $('#startbtn').bind('click', function() {
+        if (counter%2 == 0) {
+            console.log("stop")
+            $.get("/stop");
+        }
     });
 });
 
 $(function() {
     $('#startbtn').bind('click', function() {
-        $.ajax({
-            type:"GET",
-            url:"/background_process",
-            contentType: "text/plain",
-            success: function (data) {
-                flag = false;
-            }
-        })
+        if (counter%2 != 0) {
+            console.log("hello")
+            askStreams()
+            counter += 1;
+            $.ajax({
+                type:"GET",
+                url:"/background_process",
+                contentType: "text/plain",
+                success: function (data) {
+                    flag = false;
+                    counter += 1;
+                }
+            })
+        }
         return false;
     });
 });

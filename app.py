@@ -17,6 +17,7 @@ def stop():
 @app.route('/background_process')
 def background_process():
     MainLoop.runMain()
+    MainLoop.flag = True
     return ""
     
 
