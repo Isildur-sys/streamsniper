@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import requests, json, time
-import MainLoop, FetchFromTwitch, json
+import MainLoop, FetchFromTwitch, FetchDataIngame, json
 
 app = Flask(__name__)
 
@@ -23,6 +23,7 @@ def background_process():
 @app.route("/get_game/<name>")
 def get_game(name):
     FetchFromTwitch.set_current_game(name)
+    FetchDataIngame.set_current_game_frame(name)
     return "nothing"
 
 

@@ -16,6 +16,8 @@ WIN_WIDTH = ROOT.winfo_screenwidth()
 WIN_HEIGHT = ROOT.winfo_screenheight()
 REALM_ROYALE_FRAME = (WIN_WIDTH/1.5, WIN_HEIGHT/1.25, WIN_WIDTH-100, WIN_HEIGHT-150)
 PUBG_FRAME = (WIN_WIDTH/1.4, WIN_HEIGHT/16.9, WIN_WIDTH-10, WIN_HEIGHT-950)
+current_game_frame = PUBG_FRAME
+
 
 def extractNames(names):
     #extract player names from the text passed from killfeed
@@ -36,7 +38,7 @@ def extractNames(names):
 def pullKillFeed():
     #take screenshot of the killfeed and run tesseract to extract text out of the image
     #returns feed as a string
-    feed = ImageGrab.grab(bbox=PUBG_FRAME)
+    feed = ImageGrab.grab(bbox=current_game_frame)
     
     #feed.save("pic{}.png".format(1))
    
@@ -110,12 +112,24 @@ def format_Name(name):
 def format_user(name):
     return "user_login={0}".format(name)
 
+def set_current_game_frame(game):
+    if game == "PUBG":
+        current_game_frame = PUBG_FRAME
+    if game == "REALM_ROYALE":
+        current_game_frame = REALM_ROYALE_FRAME
 #ns = format_Name("summit1g")
 
 #count = 1
-#while(count < 7): 
-#    feed = ImageGrab.grab(bbox=(WIN_WIDTH/1.4, WIN_HEIGHT/16.9, WIN_WIDTH-10, WIN_HEIGHT-950))
-#    feed.save("pic{}.png".format(count))
+#while(count < 200): 
+#    time.sleep(0.5)
+#    feed = ImageGrab.grab(bbox=(WIN_WIDTH/1.4, WIN_HEIGHT/16.9, WIN_WIDTH-10, WIN_HEIGHT-970))
+    #feed.save("pic{}.png".format(count))
+#    grayed = cv2.cvtColor(np.array(feed), cv2.COLOR_BGR2GRAY)
+#    feedTxt = pytesseract.image_to_string(grayed, lang='eng')
+#    feedTxt = feedTxt.replace('\n', '')
+#    feedTxt = ''.join(feedTxt)
+
+#    print(feedTxt)
 #    count = count + 1 
-#    time.sleep(2)
+
     

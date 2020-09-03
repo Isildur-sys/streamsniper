@@ -2,7 +2,6 @@ import time
 import re
 import FetchDataIngame
 import FetchFromTwitch
-import app
 
 flag = True
 streamerQue = [] #holds live streamers in your match, until app.new_stream method 
@@ -63,3 +62,4 @@ def runMain():
                 continue
         time.sleep(0.25)
     print("Closing loop")
+runMain()
