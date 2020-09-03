@@ -23,11 +23,27 @@ def extractNames(names):
     #extract player names from the text passed from killfeed
     #return killer (= 0) and killed (= 1) as an array
     res = []
-    if "killed" in names and "with" in names:
+    if "finally killed" in names:
+        names = names.split("finally killed")
+        killer = names[0]
+        killed = names[1]
+
+        killer = killer.strip()
+        killed = killed.strip()
+
+        res.append(killer)
+        res.append(killed)
+        return res
+    elif ("killed" in names or "knocked out" in names) and "with" in names:
         #names = names.replace(" ", "")
-        names = names.split("killed")
+        if "knocked out" in names:
+            names = names.split("knocked out")
+        else: 
+            names = names.split("killed")
         killer = names[0]
         killed = re.match(r".+?(?=with)" ,names[1])[0]
+        if "by headshot" in killed:
+            killed = killed.replace("by headshot", "")
         killer = killer.strip()
         killed = killed.strip()
 
