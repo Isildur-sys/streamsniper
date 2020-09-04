@@ -5,7 +5,7 @@ URL_BASE = "https://api.twitch.tv/helix/streams?"
 CLIENT_ID = os.environ.get("TWITCH_CLIENT_ID")
 CLIENT_SECRET = os.environ.get("TWITCH_CLIENT_SECRET")
 PUBG_ID = 493057
-REALM_ROYALE_ID = 0000
+REALM_ROYALE_ID = 505845
 
 current_game = PUBG_ID #store currently selected game id (initialize to default)
 
@@ -53,8 +53,8 @@ def set_current_game(game):
         current_game = REALM_ROYALE_ID
         print("Game set to Realm Royale")
 
-res = get_response("user_login=esl_csgo")
-print(response_live(res))
+#res = get_response("user_login=dobbydore_")
+#print(response_live(res))
     
 
 

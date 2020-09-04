@@ -34,22 +34,25 @@ def extractNames(names):
         res.append(killer)
         res.append(killed)
         return res
-    elif ("killed" in names or "knocked out" in names) and "with" in names:
+    elif (" killed " in names or "knocked out" in names) and " with " in names:
         #names = names.replace(" ", "")
         if "knocked out" in names:
             names = names.split("knocked out")
         else: 
-            names = names.split("killed")
+            names = names.split(" killed ")
         killer = names[0]
-        killed = re.match(r".+?(?=with)" ,names[1])[0]
-        if "by headshot" in killed:
-            killed = killed.replace("by headshot", "")
-        killer = killer.strip()
-        killed = killed.strip()
+        try:
+            killed = re.match(r".+?(?=with)" ,names[1])[0]
+            if "by headshot" in killed:
+                killed = killed.replace("by headshot", "")
+            killer = killer.strip()
+            killed = killed.strip()
 
-        res.append(killer)
-        res.append(killed)
-        return res
+            res.append(killer)
+            res.append(killed)
+            return res
+        except TypeError:
+            print(f"TypeError with name: {killed}")
     return None
 def pullKillFeed():
     #take screenshot of the killfeed and run tesseract to extract text out of the image
