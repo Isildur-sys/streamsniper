@@ -25,12 +25,13 @@ def runMain():
             for name in names:
                 name = re.sub('\[.*?\]', '', name) #delete [CLANTAG]
                 name = re.sub(r'[^A-Za-z0-9_ ]+', '', name) #delete non alphanumeric, keep spaces and underscores
-                name = name.strip("_") #strip trailing or preceding underscores
+                name = name.lstrip("_") #strip preceding underscores (trailing underscores allowed in twitch name)
                 name = name.strip() #strip trailing or preceding spaces
                 name = name.lower() #make name lowercase
                 #add name to storage and queue
+                print(f"Player: {name}")
                 if name not in nameStorage and name != "":
-                    print("New player found! {}".format(name))
+                    #print("New player found! {}".format(name))
                     nameStorage.append(name)
                     nameQue.append(name)
                             
@@ -62,4 +63,3 @@ def runMain():
                 continue
         time.sleep(0.25)
     print("Closing loop")
-runMain()

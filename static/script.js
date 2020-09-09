@@ -44,8 +44,12 @@ function askStreams() {
 /*Start button actionlisteners*/
 $(function() {
     $('#startbtn').bind('click', function() {
+        if(document.getElementById("startbtn").innerHTML == "Start") {
+            document.getElementById("startbtn").innerHTML = "Stop";
+        } else {
+            document.getElementById("startbtn").innerHTML = "Start";
+        }
         if (counter%2 == 0) {
-            console.log("stop")
             $.get("/stop");
         }
     });
