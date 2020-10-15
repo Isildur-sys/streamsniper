@@ -1,11 +1,13 @@
 /*Main containers*/
-body {
-    color:firebrick}
+html, body {
+    margin: 0;
+    padding: 0;
+}
 #grid-container {
     display:grid;
-    grid-template-columns:2fr 1fr;
+    grid-template-columns:1fr 4fr;
     width: 100vw;
-    height: 100vh;
+    height: 100vh
 }
 
 #grid-container > div{
@@ -20,7 +22,7 @@ body {
 #stream-container{
     display: grid;
     grid-template-columns:1fr 1fr;
-    grid-template-rows:1fr;
+    grid-template-rows:1fr 1fr;
     
 }
 
@@ -28,28 +30,26 @@ body {
 #settings-panel {
     display: grid;
     justify-content: center;
-  
 }
 
 /*Settings panel buttons*/
 
 #start {
     display: flex;
-    margin: 16px;
+    justify-content: center;
 }
 
 #startbtn {
     background-color: #4d5061; 
     border: none;
     color: white;
-    padding: 1em 1.5em;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 1.5rem;
-    min-width: 200px;
+    font-size: 1rem;
     align-self: center;
-    margin: 2em;
+    width: 6em;
+    margin: auto auto 1.5em auto;
   }
 
   #startbtn:hover {
@@ -59,12 +59,16 @@ body {
   /*Settings panel dropdown*/
   select {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
-    font-size: 1.5rem;
-    padding: 1em 1.5em;
+    font-size: 1rem;
+    /*padding: 1em 1em;*/
     background: #4d5061;
     color: white;
-    border: 0;
-    margin: 2em;
+    border: none;
+    width: 6em;
+    margin: 1.5em auto auto auto;
   }
 
-
+  #dropdown {
+    display: flex;
+    justify-content: center;
+  }

@@ -10,6 +10,7 @@ def index():
 
 @app.route('/stop')
 def stop():
+    print("Stopping...")
     MainLoop.flag = False
     return ""
 

@@ -8,11 +8,8 @@
     </head>
     <body>
         <div id="grid-container">
-            <div id="stream-container">
-                
-            </div>
             <div id="settings-panel">
-                <div>
+                <div id="#dropdown">
                     <form method="GET">
                         <select onchange="getGame(this)" name="game" id="selected-game"> 
                             <option value="PUBG">PUBG</option>
@@ -26,6 +23,11 @@
                     <button type="button" id="startbtn">Start</button>
                 </div>
             </div>
+
+            <div id="stream-container">
+                
+            </div>
+        
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script type="text/javascript" src="{{url_for('static', filename='script.js')}}"></script>

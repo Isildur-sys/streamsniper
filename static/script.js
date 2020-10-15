@@ -58,7 +58,7 @@ $(function() {
 $(function() {
     $('#startbtn').bind('click', function() {
         if (counter%2 != 0) {
-            console.log("hello")
+            //console.log("hello")
             askStreams()
             counter += 1;
             $.ajax({
@@ -81,5 +81,6 @@ function getGame(game) {
 }
 
 
-/* createTwitchFrame("esl_csgo");
-createTwitchFrame("Stewie2K"); */
+createTwitchFrame("esl_csgo");
+createTwitchFrame("Stewie2K");
+createTwitchFrame("officialandypyro");  
