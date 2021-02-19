@@ -52,7 +52,7 @@ def extractNames(names):
             res.append(killed)
             return res
         except TypeError:
-            print(f"TypeError with name: {killed}")
+            print(f"TypeError with: {names}")
     return None
 def pullKillFeed():
     #take screenshot of the killfeed and run tesseract to extract text out of the image

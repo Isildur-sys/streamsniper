@@ -5,7 +5,7 @@ let counter = 1;
 function createTwitchFrame(name) {
     let div = document.createElement("div");
     let ifrm = document.createElement("iframe");
-    ifrm.setAttribute("src", "https://player.twitch.tv/?channel=" + name + "&parent=localhost&muted=true");
+    ifrm.setAttribute("src", "https://player.twitch.tv/?channel=" + name + "&parent=127.0.0.1&muted=true");
     ifrm.setAttribute("height", "100%");
     ifrm.setAttribute("width", "100%");
     ifrm.setAttribute("frameborder", "0");
@@ -48,6 +48,7 @@ $(function() {
             document.getElementById("startbtn").innerHTML = "Stop";
         } else {
             document.getElementById("startbtn").innerHTML = "Start";
+            $('#stream-container div').remove();
         }
         if (counter%2 == 0) {
             $.get("/stop");
@@ -80,7 +81,4 @@ function getGame(game) {
     $.get( "/get_game/" + game.value );
 }
 
-
-createTwitchFrame("esl_csgo");
-createTwitchFrame("Stewie2K");
-createTwitchFrame("officialandypyro");  
+createTwitchFrame("fuffenz")

@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request
+from webui import WebUI
 import requests, json, time
 import MainLoop, FetchFromTwitch, FetchDataIngame, json
 
 app = Flask(__name__)
-
+ui = WebUI(app, debug=True)
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -36,4 +37,5 @@ def new_stream():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    ui.run()
+    #app.run(debug=True)

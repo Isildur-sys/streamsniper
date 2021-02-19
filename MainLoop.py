@@ -29,9 +29,9 @@ def runMain():
                 name = name.strip() #strip trailing or preceding spaces
                 name = name.lower() #make name lowercase
                 #add name to storage and queue
-                print(f"Player: {name}")
+                #print(f"Player: {name}")
                 if name not in nameStorage and name != "":
-                    #print("New player found! {}".format(name))
+                    print("New player found! {}".format(name))
                     nameStorage.append(name)
                     nameQue.append(name)
                             
